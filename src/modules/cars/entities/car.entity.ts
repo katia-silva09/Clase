@@ -20,6 +20,9 @@ export class Car {
   @Column({ type: 'int4' })
   price: number;
 
+  @Column({ type: 'int4', default: 0 })
+  stock: number;
+
   @Column({ type: 'bool', default: true })
   isAvailable: boolean;
 }
