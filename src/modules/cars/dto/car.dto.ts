@@ -1,37 +1,57 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsInt, IsNumber, IsOptional, IsString, MinLength } from 'class-validator';
+import {
+  IsInt,
+  IsNumber,
+  IsOptional,
+  IsPositive,
+  IsString,
+  MinLength,
+} from 'class-validator';
 
 export class CreateCarDto {
   @IsOptional()
   @IsNumber()
   @ApiProperty()
-  id: number;
+  id?: number;
 
   @IsString()
-  @MinLength()
-  @ApiProperty()
-  brand: string;
-
-  @IsInt()
-  @MinLength()
+  @MinLength(3)
   @IsOptional()
   @ApiProperty()
-  model: string;
+  brand?: string;
 
   @IsString()
-  @MinLength()
+  @MinLength(3)
+  @IsOptional()
+  @ApiProperty()
+  model?: string;
+
+  @IsString()
+  @MinLength(3)
   @ApiProperty()
   description: string;
 
   @IsInt()
-  @MinLength()
+  @IsPositive()
+  @IsOptional()
   @ApiProperty()
-  year: number;
+  year?: number;
 
-  price: number;
+  @IsInt()
+  @IsPositive()
+  @IsOptional()
+  @ApiProperty() // Asegúrate de que ApiProperty esté aquí
+  stock?: number;
 
-  stock: number;
+  @IsNumber()
+  @IsPositive()
+  @IsOptional()
+  @ApiProperty() // Asegúrate de que ApiProperty esté aquí
+  price?: number;
 
-  isAvailable: boolean;
+  @IsOptional()
+  @ApiProperty() // Asegúrate de que ApiProperty esté aquí
+  isAvailable?: boolean;
 }
+
 export class UpdateCarDto extends PartialType(CreateCarDto) {}
