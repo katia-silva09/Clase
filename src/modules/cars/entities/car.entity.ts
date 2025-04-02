@@ -17,7 +17,7 @@ export class Car {
   @Column({ type: 'int4', nullable: false })
   year: number;
 
-  @Column({ type: 'int4' })
+  @Column({ type: 'float', default: 0 })
   price: number;
 
   @Column({ type: 'int4', default: 0 })
